@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>JavaScript Experiments</title>
+</head>
+<body>
+  <input placeholder="Type something please!" class="input-to-copy" />
+  <p class="p-to-copy-to">Waiting for input...</p>
+  <script>
+    const input = document.querySelector('.input-to-copy');
+    const paragraph = document.querySelector('.p-to-copy-to');
+  
+    input.addEventListener("keyup", function() {
+      paragraph.innerText  = input.value;
+    });
+  </script>
+</body>
+</html>
