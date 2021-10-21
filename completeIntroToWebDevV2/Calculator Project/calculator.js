@@ -19,8 +19,8 @@ function handleMath(value) {
 }
 
 function flushOperation(intBuffer) {
-  const happy = parseInt(intBuffer)
-    if (previousOpperator === "+") {
+  const happy = parseInt(intBuffer);
+  if (previousOpperator === "+") {
     runningTotal += intBuffer;
   } else if (previousOpperator === "-") {
     runningTotal -= intBuffer;
