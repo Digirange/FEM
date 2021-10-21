@@ -1,35 +1,7 @@
 let runningTotal = 0;
 let buffer = "0";
-let previousOpperator = null;
+let previousOperator;
 const screen = document.querySelector(".screen");
-
-function reRender() {
-  screen.innerText = buffer;
-}
-
-function handleMath(value) {
-  const intBuffer = parseInt(buffer);
-  if (runningTotal === 0) {
-    runningTotal = intBuffer;
-  } else {
-    flushOperation(intBuffer);
-  }
-  previousOpperator = value;
-  buffer = "0";
-}
-
-function flushOperation(intBuffer) {
-  const happy = parseInt(intBuffer);
-  if (previousOpperator === "+") {
-    runningTotal += intBuffer;
-  } else if (previousOpperator === "-") {
-    runningTotal -= intBuffer;
-  } else if (previousOpperator === "×") {
-    return runningTotal * happy;
-  } else if (previousOpperator === "÷") {
-    runningTotal /= intBuffer;
-  }
-}
 
 function buttonClick(value) {
   if (isNaN(parseInt(value))) {
@@ -37,7 +9,7 @@ function buttonClick(value) {
   } else {
     handleNumber(value);
   }
-  reRender();
+  rerender();
 }
 
 function handleNumber(value) {
@@ -48,20 +20,50 @@ function handleNumber(value) {
   }
 }
 
+function handleMath(value) {
+  if (buffer === "0") {
+    // do nothing
+    return;
+  }
+
+  const intBuffer = parseInt(buffer);
+  if (runningTotal === 0) {
+    runningTotal = intBuffer;
+  } else {
+    flushOperation(intBuffer);
+  }
+
+  previousOperator = value;
+
+  buffer = "0";
+}
+
+function flushOperation(intBuffer) {
+  if (previousOperator === "+") {
+    runningTotal += intBuffer;
+  } else if (previousOperator === "-") {
+    runningTotal -= intBuffer;
+  } else if (previousOperator === "×") {
+    runningTotal *= intBuffer;
+  } else {
+    runningTotal /= intBuffer;
+  }
+}
+
 function handleSymbol(value) {
   switch (value) {
     case "C":
       buffer = "0";
       runningTotal = 0;
-      previousOpperator = null;
       break;
     case "=":
-      if (previousOpperator === null) {
+      if (previousOperator === null) {
+        // need two numbers to do math
         return;
       }
-      //const newTotal = flushOperation(parseInt(buffer));
-      previousOpperator = null;
-      buffer = flushOperation(parseInt(buffer)).toString();
+      flushOperation(parseInt(buffer));
+      previousOperator = null;
+      buffer = +runningTotal;
       runningTotal = 0;
       break;
     case "←":
@@ -71,14 +73,25 @@ function handleSymbol(value) {
         buffer = buffer.substring(0, buffer.length - 1);
       }
       break;
-    default:
+    case "+":
+    case "-":
+    case "×":
+    case "÷":
       handleMath(value);
       break;
   }
 }
 
-document
-  .querySelector(".calc-buttons")
-  .addEventListener("click", function (event) {
-    buttonClick(event.target.innerText);
-  });
+function rerender() {
+  screen.innerText = buffer;
+}
+
+function init() {
+  document
+    .querySelector(".calc-buttons")
+    .addEventListener("click", function (event) {
+      buttonClick(event.target.innerText);
+    });
+}
+
+init();
