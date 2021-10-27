@@ -1,4 +1,4 @@
-import Pet from "./Pet";
+import Pet from './Pet'
 
 const Results = ({ pets }) => {
   return (
@@ -6,23 +6,20 @@ const Results = ({ pets }) => {
       {!pets.length ? (
         <h2>No Pets Found</h2>
       ) : (
-        pets.map((pet) => {
-          console.log(pets);
-          return (
-            <Pet
-              animal={pet.animal}
-              key={pet.id}
-              name={pet.name}
-              breed={pet.breed}
-              imagine={pet.images}
-              location={`${pet.city}, ${pet.state}`}
-              id={pet.id}
-            />
-          );
-        })
+        pets.map((pet) => (
+          <Pet
+            name={pet.name}
+            animal={pet.animal}
+            breed={pet.breed}
+            key={pet.id}
+            images={pet.images}
+            id={pet.id}
+            location={`${pet.city}, ${pet.state}`}
+          />
+        ))
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Results;
+export default Results
