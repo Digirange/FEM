@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 
-const signedinPages = ["/", "/playlist", "/libary"];
+const pagesThatRequireAuth = ["/", "/playlist", "/libary"];
 
 export default function middleware(req) {
-  if (signedinPages.find((p) => p === req.nextUrl.pathname)) {
+  if (pagesThatRequireAuth.find((p) => p === req.nextUrl.pathname)) {
     const token = req.cookies.STEWTUNES_ACCESS_TOKEN;
 
     if (!token) {
