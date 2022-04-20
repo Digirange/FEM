@@ -1,9 +1,18 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import GradientLayout from "../componenets/gradientLayout";
 
 const Home = () => {
-  return <div>home</div>;
+  return (
+    <GradientLayout
+      roundImage
+      color="green"
+      subtitle="profile"
+      title="Marques Stewart"
+      description="15 public playlists"
+      image="hardenEmbiid.jpg"
+    >
+      <div>home page</div>
+    </GradientLayout>
+  );
 };
 
 export default Home;
