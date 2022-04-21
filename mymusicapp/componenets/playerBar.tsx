@@ -20,8 +20,7 @@ const PlayerBar = () => {
           {activeSong ? <Player songs={songs} activeSong={activeSong} /> : null}
         </Box>
         <Box width="30%" alignContent="right">
-          <Flex>
-            <Box width="15%">
+            <Box width="15%" marginLeft="400px">
               <RangeSlider
               aria-label={["min", "max"]}
               defaultValue={[1.0]}
@@ -31,8 +30,7 @@ const PlayerBar = () => {
               </RangeSliderTrack>
               <RangeSliderThumb index={0} />
               </RangeSlider>
-            </Box>
-          </Flex>  
+            </Box> 
           </Box>
       </Flex>
     </Box>
