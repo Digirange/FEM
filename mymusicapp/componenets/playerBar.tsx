@@ -1,5 +1,4 @@
 import { Box, Flex, Text } from "@chakra-ui/layout"
-import { RangeSlider, RangeSliderTrack, RangeSliderFilledTrack, RangeSliderThumb } from "@chakra-ui/react"
 import { useStoreState } from "easy-peasy"
 import Player from "./player"
 
