@@ -129,7 +129,7 @@ const Player = ({ songs, activeSong }) => {
           volume={volume}
         />
       </Box>
-      <Center color="gray.600">
+      <Center color="gray.600" width="70%">
         <ButtonGroup>
           <IconButton
             outline="none"
@@ -191,10 +191,10 @@ const Player = ({ songs, activeSong }) => {
       </Center>
       <Box color="gray.600">
         <Flex justify="center" align="center">
-          <Box width="10%">
+          <Box width="2%">
             <Text fontSize="x-small">{formatTime(seek)}</Text>
           </Box>
-          <Box width="80%">
+          <Box width="30%">
             <RangeSlider
               aria-label={["min", "max"]}
               step={0.1}
@@ -212,11 +212,12 @@ const Player = ({ songs, activeSong }) => {
               <RangeSliderThumb index={0} />
             </RangeSlider>
           </Box>
-          <Box width="10%" textAlign="right">
+          <Box width="2%" textAlign="right" marginRight="20px">
             <Text fontSize="x-small">{formatTime(duration)}</Text>
           </Box>
-          <Box width="10%">
-            <RangeSlider aria-label={["min", "max"]}
+          <Box width="30%">
+            <Box width="30%" >
+              <RangeSlider aria-label={["min", "max"]}
               step={0.1}
               min={0}
               max={1}
@@ -228,6 +229,7 @@ const Player = ({ songs, activeSong }) => {
               </RangeSliderTrack>
               <RangeSliderThumb index={0}/>
             </RangeSlider>
+            </Box>
           </Box>
         </Flex>
       </Box>
