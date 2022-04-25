@@ -113,8 +113,8 @@ const Player = ({ songs, activeSong }) => {
     soundRef.current.seek(e[0])
   }
 
-  const onVolumeChange = () => {
-    setVolume
+  const onVolumeChange = (value) => {
+    setVolume(value)
   }
 
   return (
@@ -126,7 +126,7 @@ const Player = ({ songs, activeSong }) => {
           ref={soundRef}
           onLoad={onLoad}
           onEnd={onEnd}
-          // volume={}
+          volume={volume}
         />
       </Box>
       <Center color="gray.600">
@@ -189,11 +189,10 @@ const Player = ({ songs, activeSong }) => {
           />
         </ButtonGroup>
       </Center>
-
       <Box color="gray.600">
         <Flex justify="center" align="center">
           <Box width="10%">
-            <Text fontSize="x-small">{formatTime(duration)}</Text>
+            <Text fontSize="x-small">{formatTime(seek)}</Text>
           </Box>
           <Box width="80%">
             <RangeSlider
@@ -215,6 +214,20 @@ const Player = ({ songs, activeSong }) => {
           </Box>
           <Box width="10%" textAlign="right">
             <Text fontSize="x-small">{formatTime(duration)}</Text>
+          </Box>
+          <Box width="10%">
+            <RangeSlider aria-label={["min", "max"]}
+              step={0.1}
+              min={0}
+              max={1}
+              onChange={onVolumeChange}
+              id="volume-slider"
+            >
+              <RangeSliderTrack bg="gray.600">
+                <RangeSliderFilledTrack bg="gray.800"/>
+              </RangeSliderTrack>
+              <RangeSliderThumb index={0}/>
+            </RangeSlider>
           </Box>
         </Flex>
       </Box>

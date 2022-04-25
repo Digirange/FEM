@@ -19,18 +19,8 @@ const PlayerBar = () => {
         <Box width="40%">
           {activeSong ? <Player songs={songs} activeSong={activeSong} /> : null}
         </Box>
-        <Box width="30%" alignContent="right">
-            <Box width="15%" marginLeft="400px">
-              <RangeSlider
-              aria-label={["min", "max"]}
-              defaultValue={[1.0]}
-            >
-              <RangeSliderTrack>
-                <RangeSliderFilledTrack/>
-              </RangeSliderTrack>
-              <RangeSliderThumb index={0} />
-              </RangeSlider>
-            </Box> 
+        <Box width="30%" paddingX="150px">
+            
           </Box>
       </Flex>
     </Box>
